@@ -10,7 +10,8 @@ public class Main {
 
 		while (true) {
 			numerator = askNumerator(sc);
-
+			divisor = askDivisor(sc, numerator);
+			System.out.println(numerator + " / " + divisor + " is " + ((double) numerator / divisor));
 		}
 
 	}
@@ -41,8 +42,24 @@ public class Main {
 		return numerator;
 	}
 
-	public static void askDivisor() {
-		
-	}
+	public static int askDivisor(Scanner sc, int numerator) {
+		int divisor;
+		String divisorString;
 
+		System.out.print("Enter the divisor: ");
+		divisorString = sc.next();
+
+		try {
+			divisor = Integer.parseInt(divisorString);
+			if (divisor == 0) {
+				System.out.println("You can't divide " + numerator + " by 0");
+			} else {
+				return divisor;
+			}
+		} catch (NumberFormatException e) {
+			System.out.println("You entered bad data.\nPlease try again.\n");
+		}
+
+		return 0;
+	}
 }
